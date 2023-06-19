@@ -2,6 +2,7 @@
 import streamlit as sl
 import pandas as pd
 import requests as req
+import snowflake.connector as sc
 
 # Site content
 sl.title('My Parents New Healthy Diner')
