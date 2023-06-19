@@ -29,7 +29,6 @@ sl.dataframe(fruits_to_show)
 sl.header('Fruityvice Fruit Advice!')
 
 fruityvice_response = req.get("https://fruityvice.com/api/fruit/watermelon")
-sl.text(fruityvice_response.json()) # just writes the data tot he screen
 
 # write your own comment -what does the next line do? 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
