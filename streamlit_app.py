@@ -52,7 +52,7 @@ try:
 except URLError as e:
   sl.error()
 
-sl.stop()
+#sl.stop()
 
 # Add a button to load the fruit
 if sl.button("Get Fruit Load List"):
