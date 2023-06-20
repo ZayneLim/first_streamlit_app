@@ -3,6 +3,7 @@ import streamlit as sl
 import pandas as pd
 import requests as req
 import snowflake.connector 
+from urllib.error import URLError
 
 # Site content
 sl.title('My Parents New Healthy Diner')
@@ -38,6 +39,8 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 
 # converts into a tabular display using dataframes
 sl.dataframe(fruityvice_normalized)
+
+sl.stop()
 
 my_cnx = snowflake.connector.connect(**sl.secrets["snowflake"])
 my_cur = my_cnx.cursor()
