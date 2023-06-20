@@ -54,8 +54,9 @@ except URLError as e:
 
 #sl.stop()
 
+sl.header('The fruit load list contains:')
 # Add a button to load the fruit
-if sl.button("Get Fruit Load List"):
+if sl.button('Get Fruit Load List'):
   my_cnx = sc.connect(**sl.secrets['snowflake'])
   my_data_rows = get_fruit_load_list()
   sl.dataframe(my_data_rows)
