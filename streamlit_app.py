@@ -11,12 +11,6 @@ def get_fruityvice_data(this_fruit_choice):
   fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
 
-# Snowflake functions
-def get_fruit_load_list():
-  with my_cnx.cursor as my_cur:
-    my_cur.execute('select * from pc_rivery_db.public.fruit_load_list')
-    return my_cur.fetchall()
-
 # Site content
 sl.title('My Parents New Healthy Diner')
 
@@ -53,6 +47,11 @@ except URLError as e:
   sl.error()
 
 #sl.stop()
+# Snowflake functions
+def get_fruit_load_list():
+  with my_cnx.cursor as my_cur:
+    my_cur.execute('select * from pc_rivery_db.public.fruit_load_list')
+    return my_cur.fetchone()
 
 sl.header('The fruit load list contains:')
 # Add a button to load the fruit
