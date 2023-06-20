@@ -12,10 +12,17 @@ def get_fruityvice_data(this_fruit_choice):
   return fruityvice_normalized
 
 # Snowflake functions
+# load list
 def get_fruit_load_list():
   with my_cnx.cursor() as my_cur:
     my_cur.execute('select * from fruit_load_list')
     return my_cur.fetchall()
+
+# insert rows
+def insert_row_snowflake(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+    return 'Thanks for adding ' + new_fruit
 
 # Site content
 sl.title('My Parents New Healthy Diner')
@@ -61,8 +68,11 @@ if sl.button('Get Fruit Load List'):
   my_cnx = sc.connect(**sl.secrets['snowflake'])
   my_data_rows = get_fruit_load_list()
   sl.dataframe(my_data_rows)
-  
-# Allow the end user to add a fruit to the list
+
+# Allow the end user to add a fruit to the list 
 add_my_fruit = sl.text_input('What fruit would you like to add?')
-sl.write('The user entered ', add_my_fruit)
+if sl.button('Add a Fruit to the List'):
+  my_cnx = sc.connect(**sl.secrets['snowflake'])
+  back_from_function = insert_row_snowflake(add_my_fruit)
+  sl.text(back_from_function)
 
