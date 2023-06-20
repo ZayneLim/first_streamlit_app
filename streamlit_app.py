@@ -55,10 +55,9 @@ def get_fruit_load_list():
 
 sl.header('The fruit load list contains:')
 # Add a button to load the fruit
-if sl.button('Get Fruit Load List'):
-  my_cnx = sc.connect(**sl.secrets['snowflake'])
-  my_data_rows = get_fruit_load_list()
-  sl.dataframe(my_data_rows)
+my_cnx = sc.connect(**sl.secrets['snowflake'])
+my_data_rows = my_cnx.cursor.execute('select current_region()')
+sl.dataframe(my_data_rows)
   
 # Allow the end user to add a fruit to the list
 add_my_fruit = sl.text_input('What fruit would you like to add?')
